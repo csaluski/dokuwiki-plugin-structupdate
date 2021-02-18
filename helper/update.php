@@ -86,15 +86,6 @@ class helper_plugin_structupdate_update extends helper_plugin_bureaucracy_action
                 $helper->saveData($page, $schemadata);
             } else {
                 throw new Exception('Update for lookups not implemented yet.');
-                // we assume that we have only one lookup
-//                if (count($tosave) > 1) {
-//                    throw new Exception('Only one lookup table per struct_update action allowed.');
-//                }
-//                $table = key($tosave);
-//                $data = current($tosave);
-//                $schema = new Schema($table, 0, true);
-//                $access = new AccessTableLookup($schema, $page_row_id);
-//                $helper->saveLookupData($access, $data);
             }
         } catch(Exception $e) {
             msg($e->getMessage(), -1);
