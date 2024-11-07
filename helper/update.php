@@ -69,7 +69,16 @@ class helper_plugin_structupdate_update extends helper_plugin_bureaucracy_action
                 $schemadata = [];
                 foreach($tables as $table) {
                     $schema = AccessTable::getPageAccess($table, $page);
-                    if(!$schema->getSchema()->isEditable()) {
+                    
+                    $schema_in_edit = false;
+                    foreach (array_keys($tosave) as $check_table) {
+                        if ($table == $check_table) {
+                            $schema_in_edit = true;
+                            break;
+                        }
+                    }
+
+                    if(!$schema->getSchema()->isEditable() && $schema_in_edit) {
                         throw new Exception("Schema $table is not editable");
                     }
                     $schemadata[$table] = [];
